@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    container_name: bild-server
+    ports:
+      - "3123:80"
+    restart: unless-stopped
+    volumes:
+      - ./images:/usr/share/nginx/html/images:ro
+      - ./index.html:/usr/share/nginx/html/index.html:ro

@@ -3,11 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IGDB API Beispiel</title>
+    <title>Frohe Weihnachten 🎄</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(180deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Subtiler Schneefall */
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.2em;
+            animation: fall linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 24px;
+            padding: 40px 30px;
+            max-width: 450px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            color: #1a1a1a;
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1em;
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        .image-wrapper {
+            margin: 0 0 30px 0;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .emoji-decoration {
+            font-size: 2em;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+
+        .message {
+            color: #444;
+            font-size: 1.05em;
+            line-height: 1.6;
+            margin-top: 20px;
+        }
+
+        /* Mobile Optimierung */
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 20px;
+                border-radius: 20px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .subtitle {
+                font-size: 0.95em;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>IGDB API Beispiel</h1>
-    <div id="games"></div>
-    <script src="app.js"></script>
+<!-- Dezenter Schneefall -->
+<div class="snowflake" style="left: 10%; animation-duration: 15s; animation-delay: 0s;">❄</div>
+<div class="snowflake" style="left: 25%; animation-duration: 18s; animation-delay: 3s;">❄</div>
+<div class="snowflake" style="left: 40%; animation-duration: 20s; animation-delay: 5s;">❄</div>
+<div class="snowflake" style="left: 55%; animation-duration: 16s; animation-delay: 2s;">❄</div>
+<div class="snowflake" style="left: 70%; animation-duration: 19s; animation-delay: 4s;">❄</div>
+<div class="snowflake" style="left: 85%; animation-duration: 17s; animation-delay: 1s;">❄</div>
+
+<div class="container">
+    <div class="emoji-decoration">🎄</div>
+
+    <h1>Frohe Weihnachten</h1>
+    <p class="subtitle">Ein besonderer Gruß für dich</p>
+
+    <div class="image-wrapper">
+        <img src="images/weihnachtsmannmittelfinger.jpg" alt="Weihnachtsgruß">
+    </div>
+
+    <p class="message">
+        Wir wünschen dir eine besinnliche Weihnachtszeit und einen guten Rutsch ins neue Jahr! 🎅✨
+    </p>
+</div>
+
+<script>
+    // Sanfter Schneefall-Effekt
+    function createSnowflake() {
+        const snowflake = document.createElement('div');
+        snowflake.classList.add('snowflake');
+        snowflake.innerHTML = '❄';
+        snowflake.style.left = Math.random() * 100 + '%';
+        snowflake.style.animationDuration = (Math.random() * 8 + 12) + 's';
+        snowflake.style.fontSize = (Math.random() * 0.5 + 0.8) + 'em';
+        snowflake.style.opacity = Math.random() * 0.4 + 0.3;
+        document.body.appendChild(snowflake);
+
+        setTimeout(() => snowflake.remove(), 25000);
+    }
+
+    // Eine Schneeflocke alle 3 Sekunden
+    setInterval(createSnowflake, 3000);
+</script>
 </body>
 </html>
