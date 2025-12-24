@@ -89,6 +89,114 @@
             font-size: 1.05em;
             line-height: 1.6;
             margin-top: 20px;
+            margin-bottom: 25px;
+        }
+
+        /* Button Style */
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            font-size: 1.1em;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            animation: slideIn 0.4s ease;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            padding: 30px 30px 20px 30px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .modal-header h2 {
+            color: #1a1a1a;
+            font-size: 1.6em;
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+        .modal-body {
+            padding: 20px 30px 30px 30px;
+            text-align: center;
+        }
+
+        .modal-image {
+            margin-top: 20px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 32px;
+            font-weight: 300;
+            line-height: 20px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .close:hover {
+            color: #000;
         }
 
         /* Mobile Optimierung */
@@ -104,6 +212,28 @@
 
             .subtitle {
                 font-size: 0.95em;
+            }
+
+            .btn {
+                padding: 14px 28px;
+                font-size: 1em;
+            }
+
+            .modal-content {
+                margin: 10% auto;
+                width: 95%;
+            }
+
+            .modal-header {
+                padding: 25px 20px 15px 20px;
+            }
+
+            .modal-header h2 {
+                font-size: 1.3em;
+            }
+
+            .modal-body {
+                padding: 15px 20px 25px 20px;
             }
         }
     </style>
@@ -124,12 +254,31 @@
     <p class="subtitle">Ein besonderer Gruß für dich</p>
 
     <div class="image-wrapper">
-        <img src="images/weihnachtsmannmittelfinger.jpg" alt="Weihnachtsgruß">
+        <img src="images/weihnachtsmannmittelfinger.jpg.jpg" alt="Weihnachtsgruß">
     </div>
 
     <p class="message">
         Wir wünschen dir eine besinnliche Weihnachtszeit und einen guten Rutsch ins neue Jahr! 🎅✨
     </p>
+
+    <button class="btn" onclick="openModal()">
+        🏒 Dein Geschenk öffnen
+    </button>
+</div>
+
+<!-- Modal -->
+<div id="invitationModal" class="modal" onclick="closeModalOnBackdrop(event)">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>🏒 Einladung zum Playoff Spiel der Helios GRIZZLYS</h2>
+        </div>
+        <div class="modal-body">
+            <div class="modal-image">
+                <img src="images/Grizzlys.png" alt="Playoff Ticket">
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -147,8 +296,31 @@
         setTimeout(() => snowflake.remove(), 25000);
     }
 
-    // Eine Schneeflocke alle 3 Sekunden
     setInterval(createSnowflake, 3000);
+
+    // Modal Funktionen
+    function openModal() {
+        document.getElementById('invitationModal').style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        document.getElementById('invitationModal').style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    function closeModalOnBackdrop(event) {
+        if (event.target.id === 'invitationModal') {
+            closeModal();
+        }
+    }
+
+    // ESC-Taste zum Schließen
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            closeModal();
+        }
+    });
 </script>
 </body>
 </html>
